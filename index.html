@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Builder - Generate Professional Resumes Instantly</title>
+    <meta
+      name="description"
+      content="Build ATS-friendly resumes in minutes with AI, live preview, professional templates, quality checks, and exports."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Playfair Display", "serif"],
+            },
+            colors: {
+              ink: "#132238",
+              ocean: "#67b8ff",
+              lavender: "#b8a7ff",
+              mint: "#94e8cb",
+              peach: "#ffc8ad",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-[#f8fbff] text-ink antialiased">
+    <header class="site-header" id="home">
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a href="#home" class="brand" aria-label="AI Resume Builder home">
+          <span class="brand-mark"><i data-lucide="sparkles"></i></span>
+          <span>AI Resume Builder</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <i data-lucide="menu"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#builder">Resume Builder</a>
+          <a href="#templates">Templates</a>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-section">
+        <div class="floating-shape shape-one"></div>
+        <div class="floating-shape shape-two"></div>
+        <div class="floating-shape shape-three"></div>
+        <div class="section-grid hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">AI powered resume studio</span>
+            <h1>Build ATS-Friendly Resumes in Minutes</h1>
+            <p class="tagline">Generate Professional Resumes Instantly with AI</p>
+            <p class="hero-subtitle">
+              Create stunning resumes using AI and land your dream job faster.
+            </p>
+            <div class="hero-actions">
+              <a href="#builder" class="btn btn-primary">
+                <i data-lucide="rocket"></i>
+                Get Started
+              </a>
+              <label class="btn btn-secondary" for="resumeUpload">
+                <i data-lucide="upload-cloud"></i>
+                Upload Resume
+              </label>
+              <input id="resumeUpload" type="file" accept=".pdf,.doc,.docx,.txt" hidden />
+            </div>
+            <div class="hero-stats" aria-label="Resume builder highlights">
+              <div>
+                <strong data-counter="12000">0</strong>
+                <span>resumes created</span>
+              </div>
+              <div>
+                <strong data-counter="92">0</strong>
+                <span>avg ATS score</span>
+              </div>
+              <div>
+                <strong data-counter="12">0</strong>
+                <span>templates</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-art reveal">
+            <img src="assets/hero-resume-ai.jpg" alt="AI generating a professional resume" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell" id="features">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Features</span>
+          <h2>Everything a modern resume workflow needs</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <i data-lucide="brain-circuit"></i>
+            <h3>AI-Powered Resume Generation</h3>
+            <p>Draft polished summaries, bullet points, and role-focused language instantly.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i data-lucide="layout-template"></i>
+            <h3>Multiple Professional Templates</h3>
+            <p>Choose layouts tuned for students, developers, designers, and corporate roles.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i data-lucide="gauge"></i>
+            <h3>ATS Score Checker</h3>
+            <p>Measure completeness, keywords, contact details, and section quality.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i data-lucide="scan-eye"></i>
+            <h3>Resume Preview</h3>
+            <p>See a professional resume update in real time as you fill the form.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i data-lucide="file-down"></i>
+            <h3>Download as PDF</h3>
+            <p>Export a crisp printable resume with one click using the browser print flow.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i data-lucide="image-plus"></i>
+            <h3>Profile Photo Support</h3>
+            <p>Add a profile photo and preview it inside selected resume templates.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i data-lucide="lightbulb"></i>
+            <h3>Smart Suggestions</h3>
+            <p>Receive field-specific skill ideas and stronger content phrasing.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i data-lucide="pen-line"></i>
+            <h3>Real-Time Editing</h3>
+            <p>Make edits once and see every resume section refresh immediately.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell" id="builder">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Resume Builder</span>
+          <h2>Create, improve, preview, and export</h2>
+        </div>
+
+        <div class="builder-layout">
+          <form class="builder-form reveal" id="resumeForm">
+            <div class="form-toolbar">
+              <div>
+                <label for="careerField">Target Field</label>
+                <select id="careerField" name="careerField">
+                  <option value="Software Engineering">Software Engineering</option>
+                  <option value="Data Science">Data Science</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Design">Design</option>
+                  <option value="Human Resources">Human Resources</option>
+                </select>
+              </div>
+              <button type="button" class="btn btn-primary compact" id="generateAI">
+                <i data-lucide="wand-sparkles"></i>
+                Generate Resume with AI
+              </button>
+            </div>
+
+            <details open>
+              <summary>Personal Information</summary>
+              <div class="form-grid">
+                <label>Full Name<input name="fullName" placeholder="Aarav Sharma" /></label>
+                <label>Email Address<input name="email" type="email" placeholder="aarav@email.com" /></label>
+                <label>Phone Number<input name="phone" placeholder="+91 98765 43210" /></label>
+                <label>Address<input name="address" placeholder="Bengaluru, India" /></label>
+                <label>LinkedIn Profile<input name="linkedin" placeholder="linkedin.com/in/aarav" /></label>
+                <label>GitHub Profile<input name="github" placeholder="github.com/aarav" /></label>
+                <label>Portfolio Website<input name="portfolio" placeholder="aarav.dev" /></label>
+                <label>Upload Profile Photo<input name="photo" id="photoInput" type="file" accept="image/*" /></label>
+              </div>
+            </details>
+
+            <details open>
+              <summary>Professional Summary</summary>
+              <div class="form-grid single">
+                <label>Career Objective<textarea name="objective" placeholder="Aspiring software engineer seeking..."></textarea></label>
+                <label>About Me<textarea name="about" placeholder="Detail-oriented student with..."></textarea></label>
+              </div>
+            </details>
+
+            <details>
+              <summary>Education</summary>
+              <div class="form-grid">
+                <label>Institution Name<input name="institution" placeholder="ABC University" /></label>
+                <label>Degree<input name="degree" placeholder="B.Tech" /></label>
+                <label>Branch/Department<input name="branch" placeholder="Computer Science" /></label>
+                <label>CGPA/Percentage<input name="cgpa" placeholder="8.7 CGPA" /></label>
+                <label>Start Year<input name="startYear" placeholder="2022" /></label>
+                <label>End Year<input name="endYear" placeholder="2026" /></label>
+              </div>
+            </details>
+
+            <details>
+              <summary>Skills</summary>
+              <div class="form-grid single">
+                <label>Technical Skills<textarea name="technicalSkills" placeholder="JavaScript, Python, React, SQL"></textarea></label>
+                <label>Soft Skills<textarea name="softSkills" placeholder="Communication, leadership, collaboration"></textarea></label>
+                <label>Languages Known<textarea name="languages" placeholder="English, Hindi, Bengali"></textarea></label>
+              </div>
+              <button type="button" class="text-action" id="suggestSkills">Suggest skills based on field</button>
+            </details>
+
+            <details>
+              <summary>Experience</summary>
+              <div class="form-grid single">
+                <label>Company Name<input name="company" placeholder="Growth Labs" /></label>
+                <label>Position<input name="position" placeholder="Frontend Intern" /></label>
+                <label>Duration<input name="duration" placeholder="Jun 2025 - Aug 2025" /></label>
+                <label>Responsibilities<textarea name="responsibilities" placeholder="Built responsive dashboards..."></textarea></label>
+              </div>
+            </details>
+
+            <details>
+              <summary>Projects</summary>
+              <div class="form-grid single">
+                <label>Project Title<input name="projectTitle" placeholder="Campus Placement Tracker" /></label>
+                <label>Description<textarea name="projectDescription" placeholder="Developed a platform to track..."></textarea></label>
+                <label>Technologies Used<input name="technologies" placeholder="React, Node.js, MongoDB" /></label>
+                <label>GitHub Link<input name="projectGithub" placeholder="github.com/aarav/project" /></label>
+              </div>
+            </details>
+
+            <details>
+              <summary>Certifications</summary>
+              <div class="form-grid">
+                <label>Certification Name<input name="certification" placeholder="AWS Cloud Practitioner" /></label>
+                <label>Issuing Organization<input name="issuer" placeholder="Amazon Web Services" /></label>
+                <label>Year<input name="certYear" placeholder="2025" /></label>
+              </div>
+            </details>
+
+            <details>
+              <summary>Achievements</summary>
+              <div class="form-grid single">
+                <label>Awards<textarea name="awards" placeholder="Dean's list, merit scholarship"></textarea></label>
+                <label>Competitions<textarea name="competitions" placeholder="Hackathon finalist"></textarea></label>
+                <label>Leadership Roles<textarea name="leadership" placeholder="Placement cell coordinator"></textarea></label>
+              </div>
+            </details>
+
+            <details>
+              <summary>Extra Activities</summary>
+              <div class="form-grid single">
+                <label>Clubs<textarea name="clubs" placeholder="Coding club, design society"></textarea></label>
+                <label>Volunteering<textarea name="volunteering" placeholder="Taught programming to juniors"></textarea></label>
+                <label>Workshops<textarea name="workshops" placeholder="AI bootcamp, cloud workshop"></textarea></label>
+              </div>
+            </details>
+          </form>
+
+          <aside class="preview-panel reveal">
+            <div class="template-strip" aria-label="Resume templates">
+              <button class="template-chip active" data-template="modern">Modern Professional</button>
+              <button class="template-chip" data-template="minimal">Minimalist</button>
+              <button class="template-chip" data-template="corporate">Corporate</button>
+              <button class="template-chip" data-template="creative">Creative Designer</button>
+              <button class="template-chip" data-template="tech">Tech Developer</button>
+              <button class="template-chip" data-template="student">Student Fresher</button>
+              <button class="template-chip" data-template="academic">Academic Scholar</button>
+              <button class="template-chip" data-template="executive">Executive</button>
+              <button class="template-chip" data-template="startup">Startup</button>
+              <button class="template-chip" data-template="elegant">Elegant Serif</button>
+              <button class="template-chip" data-template="classic">Classic</button>
+              <button class="template-chip" data-template="infographic">Infographic</button>
+            </div>
+
+            <div class="score-card">
+              <div>
+                <span>ATS Compatibility Score</span>
+                <strong id="atsScore">0</strong>
+              </div>
+              <div class="score-meter"><span id="scoreFill"></span></div>
+            </div>
+
+            <div class="quality-list" id="qualityList"></div>
+
+            <div class="export-actions">
+              <button type="button" class="btn btn-secondary compact" id="downloadPDF">
+                <i data-lucide="file-text"></i>
+                Download PDF
+              </button>
+              <button type="button" class="btn btn-secondary compact" id="downloadDOCX">
+                <i data-lucide="file-type"></i>
+                Download DOCX
+              </button>
+              <button type="button" class="btn btn-secondary compact" id="printResume">
+                <i data-lucide="printer"></i>
+                Print
+              </button>
+            </div>
+
+            <div class="resume-preview template-modern" id="resumePreview" aria-label="Live resume preview"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-shell" id="templates">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Templates</span>
+          <h2>Twelve polished resume styles</h2>
+        </div>
+        <div class="templates-grid">
+          <button class="template-card reveal active" data-template="modern" type="button"><span></span><h3>Modern Professional</h3><p>Balanced, elegant, and recruiter-friendly.</p></button>
+          <button class="template-card reveal" data-template="minimal" type="button"><span></span><h3>Minimalist</h3><p>Clean typography with generous whitespace.</p></button>
+          <button class="template-card reveal" data-template="corporate" type="button"><span></span><h3>Corporate</h3><p>Formal structure for business and finance roles.</p></button>
+          <button class="template-card reveal" data-template="creative" type="button"><span></span><h3>Creative Designer</h3><p>Subtle personality for portfolio-led applications.</p></button>
+          <button class="template-card reveal" data-template="tech" type="button"><span></span><h3>Tech Developer</h3><p>Skills-forward layout for engineering profiles.</p></button>
+          <button class="template-card reveal" data-template="student" type="button"><span></span><h3>Student Fresher</h3><p>Education, projects, and potential at the center.</p></button>
+          <button class="template-card reveal" data-template="academic" type="button"><span></span><h3>Academic Scholar</h3><p>Research, education, publications, and achievements.</p></button>
+          <button class="template-card reveal" data-template="executive" type="button"><span></span><h3>Executive</h3><p>Senior, confident structure for leadership roles.</p></button>
+          <button class="template-card reveal" data-template="startup" type="button"><span></span><h3>Startup</h3><p>Energetic layout for builders and generalists.</p></button>
+          <button class="template-card reveal" data-template="elegant" type="button"><span></span><h3>Elegant Serif</h3><p>Refined editorial style with premium typography.</p></button>
+          <button class="template-card reveal" data-template="classic" type="button"><span></span><h3>Classic</h3><p>Traditional one-page resume for conservative roles.</p></button>
+          <button class="template-card reveal" data-template="infographic" type="button"><span></span><h3>Infographic</h3><p>Visual, skill-forward presentation for portfolios.</p></button>
+        </div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="section-grid about-grid">
+          <div class="reveal">
+            <span class="eyebrow">About</span>
+            <h2>Built for the Build One App a Day initiative</h2>
+            <p>
+              AI Resume Builder is a fast, polished student-focused product concept created for
+              the Build One App a Day initiative. It shows how AI-powered development can turn a
+              complete product idea into a working browser app with thoughtful UX, practical
+              workflows, and production-minded details.
+            </p>
+          </div>
+          <div class="about-metrics reveal">
+            <div><strong data-counter="24">0</strong><span>hour build mindset</span></div>
+            <div><strong data-counter="8">0</strong><span>AI quality checks</span></div>
+            <div><strong data-counter="100">0</strong><span>ATS target score</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell" id="contact">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Contact</span>
+          <h2>Questions, feedback, or collaboration</h2>
+        </div>
+        <form class="contact-form reveal" id="contactForm">
+          <label>Name<input required placeholder="Your name" /></label>
+          <label>Email<input required type="email" placeholder="you@example.com" /></label>
+          <label>Message<textarea required placeholder="Tell us what you need"></textarea></label>
+          <button class="btn btn-primary" type="submit">
+            <i data-lucide="send"></i>
+            Send Message
+          </button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>AI Resume Builder</strong>
+        <span>Generate Professional Resumes Instantly with AI</span>
+      </div>
+      <nav aria-label="Footer links">
+        <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub Repository</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </nav>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
